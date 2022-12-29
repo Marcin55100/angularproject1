@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,25 +7,43 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  public forecasts?: WeatherForecast[];
-  isDisabled: boolean = false;
-  title: string = "My title";
-  value = 0;
 
-  constructor(http: HttpClient) {
-    http.get<WeatherForecast[]>('/weatherforecast').subscribe(result => {
-      this.forecasts = result;
-    }, error => console.error(error));
+  //@ViewChild(MatTable, { static: false }) table: MatTable<any>;
+  //displayedColumns: string[] = ['home', 'away', 'score'];
+  //public results?: MatchResult[];
+  //public realResults?: MatchResult[];
+  //public dataSource: MatTableDataSource<MatchResult> = new MatTableDataSource<MatchResult>([]);
+  description: string = "This component demonstrates fetching data from livescore...";
+  team: string = "Arsenal";
+
+  constructor(public http: HttpClient) {
+    console.log("app constructor entered");
   }
 
-  onClick() {
-    console.log("Button has clicked");
-  }
+  //  http.get<MatchResult[]>('/footballresults/fake').subscribe(result => {
+  //    this.results = result;
+  //    this.dataSource = new MatTableDataSource<MatchResult>(result);
+  //    console.log(result);
+  //  }, error => console.error(error));
+
+  //  http.get<MatchResult[]>('/footballresults').subscribe(result => {
+  //    this.realResults = result;
+  //    this.dataSource = new MatTableDataSource<MatchResult>(result);
+  //    console.log(result);
+  //  }, error => console.error(error));
+  //}
+
+  //getData() {
+  //  this.http.get<MatchResult[]>('/footballresults/fake').subscribe(result => {
+  //    this.dataSource = new MatTableDataSource<MatchResult>(result);
+  //    console.log(result);
+  //  }, error => console.error(error));
+  //}
 }
 
-interface WeatherForecast {
-  date: string;
-  temperatureC: number;
-  temperatureF: number;
-  summary: string;
-}
+//export interface MatchResult {
+//  homeTeam: string;
+//  homeScore: number;
+//  awayTeam: string;
+//  awayScore: number;
+//}
